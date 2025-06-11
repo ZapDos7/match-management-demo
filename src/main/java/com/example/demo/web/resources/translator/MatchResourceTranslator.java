@@ -18,6 +18,7 @@ public class MatchResourceTranslator {
         resource.setTeamA(match.getTeamA());
         resource.setTeamB(match.getTeamB());
         resource.setSport(match.getSport().toString());
+        resource.setOdds(MatchOddsResourceTranslator.toListResources(match.getMatchOdds()));
         return resource;
     }
 

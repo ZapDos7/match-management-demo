@@ -1,6 +1,7 @@
 package com.example.demo.web.controller;
 
 import com.example.demo.service.MatchService;
+import com.example.demo.web.request.CreateMatchOddsRequest;
 import com.example.demo.web.request.CreateMatchRequest;
 import com.example.demo.web.request.UpdateMatchRequest;
 import com.example.demo.web.resources.MatchResource;
@@ -22,6 +23,8 @@ public class MatchController {
         this.matchService = matchService;
     }
 
+    // Get
+
     @Operation(summary = "Get all matches")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -36,12 +39,23 @@ public class MatchController {
         return MatchResourceTranslator.toResource(matchService.getOne(id));
     }
 
+    // Create
+
     @Operation(summary = "Create a new match")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public MatchResource createMatch(@RequestBody CreateMatchRequest request) {
         return MatchResourceTranslator.toResource(matchService.createMatch(request));
     }
+
+    @Operation(summary = "Add odds to match")
+    @PostMapping(path = "/{id}/odds")
+    @ResponseStatus(HttpStatus.CREATED)
+    public MatchResource createMatchOdds(@PathVariable long id, @RequestBody CreateMatchOddsRequest request) {
+        return MatchResourceTranslator.toResource(matchService.createOdds(id, request));
+    }
+
+    // Update
 
     @Operation(summary = "Update a match")
     @PatchMapping(path = "{id}")
@@ -50,11 +64,27 @@ public class MatchController {
         return MatchResourceTranslator.toResource(matchService.updateMatch(id, request));
     }
 
+    // Delete
+
     @Operation(summary = "Delete a match")
     @DeleteMapping(path = "{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteMatch(@PathVariable long id) {
         matchService.deleteMatch(id);
+    }
+
+    @Operation(summary = "Delete an odds of a match")
+    @DeleteMapping(path = "/{matchId}/odds/{matchOddsId}")
+    @ResponseStatus(HttpStatus.OK)
+    public MatchResource deleteMatchOddsById(@PathVariable long matchId, @PathVariable long matchOddsId) {
+        return MatchResourceTranslator.toResource(matchService.deleteMatchOddsById(matchId, matchOddsId));
+    }
+
+    @Operation(summary = "Delete all odds of a match")
+    @DeleteMapping(path = "/{id}/odds")
+    @ResponseStatus(HttpStatus.OK)
+    public MatchResource deleteAllMatchOdds(@PathVariable long id) {
+        return MatchResourceTranslator.toResource(matchService.deleteAllMatchOdds(id));
     }
 
     @Operation(summary = "Delete all matches")

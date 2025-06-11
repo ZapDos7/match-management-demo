@@ -1,10 +1,19 @@
-package com.example.demo.web.request;
+package com.example.demo.web.resources;
 
-public class CreateMatchOddsRequest {
+public class MatchOddsResource {
+    private long id;
     private String specifier;
     private double odd;
 
-    public CreateMatchOddsRequest() {
+    public MatchOddsResource() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getSpecifier() {

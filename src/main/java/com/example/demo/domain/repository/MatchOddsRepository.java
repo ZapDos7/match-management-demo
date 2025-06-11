@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatchOddsRepository extends JpaRepository<MatchOdds, Long> {
+    void deleteByMatchId(Long matchId);
 }

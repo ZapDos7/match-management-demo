@@ -1,8 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Match;
+import com.example.demo.domain.MatchOdds;
+import com.example.demo.domain.enums.Specifier;
 import com.example.demo.domain.enums.SportType;
 import com.example.demo.domain.repository.MatchRepository;
+import com.example.demo.web.request.CreateMatchOddsRequest;
 import com.example.demo.web.request.CreateMatchRequest;
 import com.example.demo.web.request.UpdateMatchRequest;
 import org.slf4j.Logger;
@@ -17,9 +20,11 @@ public class MatchService {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final MatchRepository matchRepository;
+    private final MatchOddsService matchOddsService;
 
-    public MatchService(MatchRepository matchRepository) {
+    public MatchService(MatchRepository matchRepository, MatchOddsService matchOddsService) {
         this.matchRepository = matchRepository;
+        this.matchOddsService = matchOddsService;
     }
 
     public List<Match> getAll() {
@@ -33,6 +38,28 @@ public class MatchService {
             logger.error("Could not find match with id {}", id);
             return null; // error handling todo
         });
+    }
+
+    //
+    public Match createOdds(long id, CreateMatchOddsRequest request) {
+        Match match = getOne(id);
+
+        // db level validation
+        boolean exists = match.getMatchOdds().stream()
+                .anyMatch(o -> o.getSpecifier().equals(request.getSpecifier()));
+        if (exists) {
+            throw new IllegalArgumentException("Odds with this specifier already exist for the match");
+        }
+
+        // add odds
+        MatchOdds odds = new MatchOdds();
+        odds.setMatch(match); // set the owning side
+        odds.setSpecifier(Specifier.fromLabel(request.getSpecifier()));
+        odds.setOdd(request.getOdd());
+
+        match.getMatchOdds().add(odds);
+        // return
+        return matchRepository.save(match);
     }
 
     public Match createMatch(CreateMatchRequest request) {
@@ -72,6 +99,24 @@ public class MatchService {
     public void deleteMatch(long id) {
         logger.trace("Deleting match with id {}", id);
         matchRepository.deleteById(id);
+    }
+
+    public Match deleteMatchOddsById(long matchId, long matchOddsId) {
+        MatchOdds matchOdds = matchOddsService.getById(matchOddsId);
+        // verify
+        if (matchOdds.getMatch().getId() != matchId) {
+            throw new IllegalArgumentException("Odds do not belong to this match");
+        }
+        // delete
+        matchOddsService.deleteMatchOdds(matchOddsId);
+        // return updated match
+        return getOne(matchId);
+    }
+
+    public Match deleteAllMatchOdds(long id) {
+        matchOddsService.deleteAllMatchOddsByMatchId(id);
+        // return updated match
+        return getOne(id);
     }
 
     public void deleteAll() {

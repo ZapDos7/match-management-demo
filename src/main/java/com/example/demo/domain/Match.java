@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "matches")
@@ -17,6 +18,7 @@ public class Match {
     private String teamA;
     private String teamB;
     private SportType sport;
+    private List<MatchOdds> matchOdds;
 
     public Match() {
     }
@@ -94,5 +96,14 @@ public class Match {
 
     public void setSport(SportType sport) {
         this.sport = sport;
+    }
+
+    @OneToMany(mappedBy = "match", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    public List<MatchOdds> getMatchOdds() {
+        return matchOdds;
+    }
+
+    public void setMatchOdds(List<MatchOdds> matchOdds) {
+        this.matchOdds = matchOdds;
     }
 }

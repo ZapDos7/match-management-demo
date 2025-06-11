@@ -1,20 +1,18 @@
 package com.example.demo.web.resources;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public class MatchResource {
     private long id;
     private String description;
-    @JsonFormat(pattern="yyyy/MM/dd")
     private LocalDate date;
-    @JsonFormat(pattern="HH:mm")
     private LocalTime time;
     private String teamA;
     private String teamB;
     private String sport;
+    private List<MatchOddsResource> odds;
 
     public MatchResource() {
     }
@@ -73,5 +71,13 @@ public class MatchResource {
 
     public void setSport(String sport) {
         this.sport = sport;
+    }
+
+    public List<MatchOddsResource> getOdds() {
+        return odds;
+    }
+
+    public void setOdds(List<MatchOddsResource> odds) {
+        this.odds = odds;
     }
 }

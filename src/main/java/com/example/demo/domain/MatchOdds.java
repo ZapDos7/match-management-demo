@@ -5,20 +5,16 @@ import com.example.demo.domain.enums.converters.SpecifierConverter;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "match_odds")
+@Table(name = "match_odds", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"match_id", "specifier"})
+})
 public class MatchOdds {
     private long id;
-    private long matchId;
+    private Match match;
     private Specifier specifier;
     private double odd;
 
     public MatchOdds() {
-    }
-
-    public MatchOdds(long matchId, Specifier specifier, double odd) {
-        this.matchId = matchId;
-        this.specifier = specifier;
-        this.odd = odd;
     }
 
     @Id
@@ -32,13 +28,14 @@ public class MatchOdds {
         this.id = id;
     }
 
-    @Column(name = "match_id")
-    public long getMatchId() {
-        return matchId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "match_id", nullable = false)
+    public Match getMatch() {
+        return match;
     }
 
-    public void setMatchId(long matchId) {
-        this.matchId = matchId;
+    public void setMatch(Match match) {
+        this.match = match;
     }
 
     @Column(name = "specifier")
