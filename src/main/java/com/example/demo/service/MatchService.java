@@ -10,9 +10,9 @@ import com.example.demo.web.request.CreateMatchRequest;
 import com.example.demo.web.request.UpdateMatchRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MatchService {
@@ -27,9 +27,9 @@ public class MatchService {
         this.matchOddsService = matchOddsService;
     }
 
-    public List<Match> getAll() {
-        logger.trace("Fetching all matches");
-        return matchRepository.findAll();
+    public Page<Match> getAll(Pageable pageable) {
+        logger.trace("Fetching matches for page {}", pageable);
+        return matchRepository.findAll(pageable);
     }
 
     public Match getOne(long id) {

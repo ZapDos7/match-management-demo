@@ -2,9 +2,7 @@ package com.example.demo.web.resources.translator;
 
 import com.example.demo.domain.Match;
 import com.example.demo.web.resources.MatchResource;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public class MatchResourceTranslator {
     private MatchResourceTranslator() {}
@@ -22,9 +20,7 @@ public class MatchResourceTranslator {
         return resource;
     }
 
-    public static List<MatchResource> toListResources(List<Match> matchList) {
-        List<MatchResource> resources = new ArrayList<>();
-        matchList.forEach(m -> resources.add(toResource(m)));
-        return resources;
+    public static Page<MatchResource> toPageResources(Page<Match> matchPage) {
+        return matchPage.map(MatchResourceTranslator::toResource);
     }
 }

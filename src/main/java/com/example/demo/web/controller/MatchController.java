@@ -8,10 +8,11 @@ import com.example.demo.web.resources.MatchResource;
 import com.example.demo.web.resources.translator.MatchResourceTranslator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "Matches", description = "Manage matches")
 @RestController
@@ -25,11 +26,14 @@ public class MatchController {
 
     // Get
 
-    @Operation(summary = "Get all matches")
+    @Operation(summary = "Get all matches, optionally in a pageable manner, sorting by date asc/desc")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<MatchResource> getAllMatches() {
-        return MatchResourceTranslator.toListResources(matchService.getAll());
+    public Page<MatchResource> getAllMatches(
+            @RequestParam(required = false, defaultValue = "0") Integer page,
+            @RequestParam(required = false, defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "asc") String sort) {
+        return MatchResourceTranslator.toPageResources(matchService.getAll(PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(sort), "date"))));
     }
 
     @Operation(summary = "Get a match's details")
