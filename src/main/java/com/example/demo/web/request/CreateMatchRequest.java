@@ -1,32 +1,21 @@
 package com.example.demo.web.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class CreateMatchRequest {
     private String description;
+    @JsonFormat(pattern="yyyy/MM/dd")
     private LocalDate date;
+    @JsonFormat(pattern="HH:mm")
     private LocalTime time;
     private String teamA;
     private String teamB;
     private int sport;
 
-    public CreateMatchRequest(String description, LocalDate date, LocalTime time, String teamA, String teamB, int sport) {
-        this.description = description;
-        this.date = date;
-        this.time = time;
-        this.teamA = teamA;
-        this.teamB = teamB;
-        this.sport = sport;
-    }
-
-    public CreateMatchRequest(String description, String teamA, String teamB, int sport) {
-        this.description = description;
-        this.date = LocalDate.now();
-        this.time = LocalTime.now();
-        this.teamA = teamA;
-        this.teamB = teamB;
-        this.sport = sport;
+    public CreateMatchRequest() {
     }
 
     public String getDescription() {
