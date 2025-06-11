@@ -1,6 +1,5 @@
 package com.example.demo.web.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
@@ -9,9 +8,7 @@ import java.time.LocalTime;
 @JsonInclude(JsonInclude.Include.NON_NULL) // omit fields that should not be updated
 public class UpdateMatchRequest {
     private String description;
-    @JsonFormat(pattern="yyyy/MM/dd")
     private LocalDate date;
-    @JsonFormat(pattern="HH:mm")
     private LocalTime time;
     private String teamA;
     private String teamB;

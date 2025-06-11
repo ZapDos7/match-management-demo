@@ -1,15 +1,11 @@
 package com.example.demo.web.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class CreateMatchRequest {
     private String description;
-    @JsonFormat(pattern="yyyy/MM/dd")
     private LocalDate date;
-    @JsonFormat(pattern="HH:mm")
     private LocalTime time;
     private String teamA;
     private String teamB;
