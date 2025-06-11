@@ -5,6 +5,7 @@ import com.example.demo.domain.MatchOdds;
 import com.example.demo.domain.enums.Specifier;
 import com.example.demo.domain.enums.SportType;
 import com.example.demo.domain.repository.MatchRepository;
+import com.example.demo.web.errors.exceptions.EntityNotFoundException;
 import com.example.demo.web.request.CreateMatchOddsRequest;
 import com.example.demo.web.request.CreateMatchRequest;
 import com.example.demo.web.request.UpdateMatchRequest;
@@ -34,9 +35,9 @@ public class MatchService {
 
     public Match getOne(long id) {
         logger.trace("Fetching a match");
-        return matchRepository.findById(id).orElseGet(() -> {
+        return matchRepository.findById(id).orElseThrow(() -> {
             logger.error("Could not find match with id {}", id);
-            return null; // error handling todo
+            return new EntityNotFoundException("Match", id);
         });
     }
 
