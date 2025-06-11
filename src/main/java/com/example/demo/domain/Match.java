@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +19,7 @@ public class Match {
     private String teamA;
     private String teamB;
     private SportType sport;
-    private List<MatchOdds> matchOdds;
+    private List<MatchOdds> matchOdds = new ArrayList<>();
 
     public Match() {
     }

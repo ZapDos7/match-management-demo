@@ -11,7 +11,6 @@ import com.example.demo.web.request.UpdateMatchRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +27,7 @@ public class MatchService {
         this.matchOddsService = matchOddsService;
     }
 
-    public Page<Match> getAll(int pageNo, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNo, pageSize);
+    public Page<Match> getAll(Pageable pageable) {
         logger.trace("Fetching matches for page {}", pageable);
         return matchRepository.findAll(pageable);
     }
