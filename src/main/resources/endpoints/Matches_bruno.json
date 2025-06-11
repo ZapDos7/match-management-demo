@@ -1,0 +1,332 @@
+{
+  "name": "Matches",
+  "version": "1",
+  "items": [
+    {
+      "type": "folder",
+      "name": "Match OPs",
+      "filename": "Match OPs",
+      "seq": 2,
+      "root": {
+        "meta": {
+          "name": "Match OPs",
+          "seq": 2
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Get Matches",
+          "filename": "Get Matches.bru",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:8080/matches?page=0&size=2&sort=asc",
+            "method": "GET",
+            "headers": [],
+            "params": [
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "size",
+                "value": "2",
+                "type": "query",
+                "enabled": true
+              },
+              {
+                "name": "sort",
+                "value": "asc",
+                "type": "query",
+                "enabled": true
+              }
+            ],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Get one Match",
+          "filename": "Get one Match.bru",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:8080/matches/{id}",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Create a Match",
+          "filename": "Create a Match.bru",
+          "seq": 3,
+          "request": {
+            "url": "http://localhost:8080/matches",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"description\": \"desc\",\n  \"date\": \"30/12/2005\",\n  \"time\": \"13:00\",\n  \"teamA\": \"Team 1\",\n  \"teamB\": \"Team G\",\n  \"sport\": 2\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Edit a Match",
+          "filename": "Edit a Match.bru",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:8080/matches/7",
+            "method": "PATCH",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"description\": \"test description 7\",\n  \"date\": \"24/12/2026\",\n  \"time\": \"13:55\",\n  \"teamA\": \"Team F\",\n  \"teamB\": \"Team H\",\n  \"sport\": 2\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete a Match",
+          "filename": "Delete a Match.bru",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:8080/matches/6",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "json": "{\n  \"description\": \"test description 2\",\n//   \"date\": \"2024/12/30\",\n  \"time\": \"13:55\",\n//   \"teamA\": \"Team F\",\n  \"teamB\": \"Team H\",\n  \"sport\": 2\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete all Match",
+          "filename": "Delete all Match.bru",
+          "seq": 2,
+          "request": {
+            "url": "http://localhost:8080/matches",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "json": "{\n  \"description\": \"test description 2\",\n//   \"date\": \"2024/12/30\",\n  \"time\": \"13:55\",\n//   \"teamA\": \"Team F\",\n  \"teamB\": \"Team H\",\n  \"sport\": 2\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Add Odds to Match",
+          "filename": "Add Odds to Match.bru",
+          "seq": 7,
+          "request": {
+            "url": "http://localhost:8080/matches/{id}/odds",
+            "method": "POST",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "json",
+              "json": "{\n  \"specifier\": \"1\",\n  \"odd\": 1.1\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete a Match's Odds",
+          "filename": "Delete a Match's Odds.bru",
+          "seq": 8,
+          "request": {
+            "url": "http://localhost:8080/matches/{matchId}/odds/{matchOddsId)",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "json": "{\n  \"description\": \"test description 2\",\n//   \"date\": \"2024/12/30\",\n  \"time\": \"13:55\",\n//   \"teamA\": \"Team F\",\n  \"teamB\": \"Team H\",\n  \"sport\": 2\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        },
+        {
+          "type": "http",
+          "name": "Delete all Match's Odds",
+          "filename": "Delete all Match's Odds.bru",
+          "seq": 9,
+          "request": {
+            "url": "http://localhost:8080/matches/{id}/odds",
+            "method": "DELETE",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "json": "{\n  \"description\": \"test description 2\",\n//   \"date\": \"2024/12/30\",\n  \"time\": \"13:55\",\n//   \"teamA\": \"Team F\",\n  \"teamB\": \"Team H\",\n  \"sport\": 2\n}",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "folder",
+      "name": "Admin",
+      "filename": "Admin",
+      "seq": 2,
+      "root": {
+        "meta": {
+          "name": "Admin",
+          "seq": 2
+        }
+      },
+      "items": [
+        {
+          "type": "http",
+          "name": "Check App's Health",
+          "filename": "Check App's Health.bru",
+          "seq": 1,
+          "request": {
+            "url": "http://localhost:8080/actuator/health",
+            "method": "GET",
+            "headers": [],
+            "params": [],
+            "body": {
+              "mode": "none",
+              "formUrlEncoded": [],
+              "multipartForm": [],
+              "file": []
+            },
+            "script": {},
+            "vars": {},
+            "assertions": [],
+            "tests": "",
+            "docs": "",
+            "auth": {
+              "mode": "inherit"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "environments": [],
+  "brunoConfig": {
+    "version": "1",
+    "name": "Matches",
+    "type": "collection",
+    "ignore": [
+      "node_modules",
+      ".git"
+    ],
+    "size": 0,
+    "filesCount": 0
+  }
+}
