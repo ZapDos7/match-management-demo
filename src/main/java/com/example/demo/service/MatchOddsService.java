@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.domain.MatchOdds;
 import com.example.demo.domain.repository.MatchOddsRepository;
+import com.example.demo.web.errors.exceptions.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +21,9 @@ public class MatchOddsService {
     // get
     public MatchOdds getById(long id) {
         logger.trace("Fetching a match");
-        return matchOddsRepository.findById(id).orElseGet(() -> {
+        return matchOddsRepository.findById(id).orElseThrow(() -> {
             logger.error("Could not find match odds with id {}", id);
-            return null; // error handling todo
+            return new EntityNotFoundException("Match odds", id);
         });
     }
     // create

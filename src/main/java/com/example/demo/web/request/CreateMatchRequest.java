@@ -1,5 +1,9 @@
 package com.example.demo.web.request;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -7,8 +11,12 @@ public class CreateMatchRequest {
     private String description;
     private LocalDate date;
     private LocalTime time;
+    @NotBlank(message = "Must provide team name")
     private String teamA;
+    @NotBlank(message = "Must provide team name")
     private String teamB;
+    @Min(value = 1, message = "Sport must be at least 1 (FOOTBALL)")
+    @Max(value = 3, message = "Sport must be at most 2 (BASKETBALL)")
     private int sport;
 
     public CreateMatchRequest() {

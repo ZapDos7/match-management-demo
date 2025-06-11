@@ -13,7 +13,8 @@ Match management REST API using Spring Boot
 - [x] Return custom resources instead of entities 
 - [x] Functionality: return all match odds per match
 - [x] Page instead of list in Controller getters, also sorting
-- [ ] Validations & Error handling
+- [x] Validations & Error handling
 - [ ] Testing
 - [ ] Introduction of Docker
+- [ ] Actuator, healthcheck endpoint
 - [ ] Functionality: edit match odd per id/specifier

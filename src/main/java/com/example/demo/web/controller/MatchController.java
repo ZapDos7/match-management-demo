@@ -8,6 +8,7 @@ import com.example.demo.web.resources.MatchResource;
 import com.example.demo.web.resources.translator.MatchResourceTranslator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -48,14 +49,14 @@ public class MatchController {
     @Operation(summary = "Create a new match")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MatchResource createMatch(@RequestBody CreateMatchRequest request) {
+    public MatchResource createMatch(@RequestBody @Valid CreateMatchRequest request) {
         return MatchResourceTranslator.toResource(matchService.createMatch(request));
     }
 
     @Operation(summary = "Add odds to match")
     @PostMapping(path = "/{id}/odds")
     @ResponseStatus(HttpStatus.CREATED)
-    public MatchResource createMatchOdds(@PathVariable long id, @RequestBody CreateMatchOddsRequest request) {
+    public MatchResource createMatchOdds(@PathVariable long id, @RequestBody @Valid CreateMatchOddsRequest request) {
         return MatchResourceTranslator.toResource(matchService.createOdds(id, request));
     }
 
