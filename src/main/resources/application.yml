@@ -12,3 +12,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   flyway:
     baseline-on-migrate: true
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
