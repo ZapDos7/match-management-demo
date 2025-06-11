@@ -9,3 +9,7 @@ Match management REST API using Spring Boot
 4. Visit the app's endpoints [via browser](http://localhost:8080/matches), cURL, or using Postman or any such tool of your preference.
 5. Visit the app's [swagger documentation page](http://localhost:8080/swagger-ui.html) for more info.
 
+#### Next Steps
+1. Return custom resources instead of entities 
+2. Validations & Error handling
+3. Introduction of Docker

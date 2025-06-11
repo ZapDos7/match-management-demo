@@ -1,27 +1,17 @@
-package com.example.demo.domain;
-
-import com.example.demo.domain.enums.SportType;
-import com.example.demo.domain.enums.SportTypeConverter;
-import jakarta.persistence.*;
+package com.example.demo.web.request;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-@Entity
-@Table(name = "matches")
-public class Match {
-    private long id;
+public class CreateMatchRequest {
     private String description;
     private LocalDate date;
     private LocalTime time;
     private String teamA;
     private String teamB;
-    private SportType sport;
+    private int sport;
 
-    public Match() {
-    }
-
-    public Match(String description, LocalDate date, LocalTime time, String teamA, String teamB, SportType sport) {
+    public CreateMatchRequest(String description, LocalDate date, LocalTime time, String teamA, String teamB, int sport) {
         this.description = description;
         this.date = date;
         this.time = time;
@@ -30,18 +20,15 @@ public class Match {
         this.sport = sport;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public long getId() {
-        return id;
+    public CreateMatchRequest(String description, String teamA, String teamB, int sport) {
+        this.description = description;
+        this.date = LocalDate.now();
+        this.time = LocalTime.now();
+        this.teamA = teamA;
+        this.teamB = teamB;
+        this.sport = sport;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -50,7 +37,6 @@ public class Match {
         this.description = description;
     }
 
-    @Column(name = "match_date")
     public LocalDate getDate() {
         return date;
     }
@@ -59,7 +45,6 @@ public class Match {
         this.date = date;
     }
 
-    @Column(name = "match_time")
     public LocalTime getTime() {
         return time;
     }
@@ -68,7 +53,6 @@ public class Match {
         this.time = time;
     }
 
-    @Column(name = "team_a")
     public String getTeamA() {
         return teamA;
     }
@@ -77,7 +61,6 @@ public class Match {
         this.teamA = teamA;
     }
 
-    @Column(name = "team_b")
     public String getTeamB() {
         return teamB;
     }
@@ -86,13 +69,11 @@ public class Match {
         this.teamB = teamB;
     }
 
-    @Column(name = "sport")
-    @Convert(converter = SportTypeConverter.class)
-    public SportType getSport() {
+    public int getSport() {
         return sport;
     }
 
-    public void setSport(SportType sport) {
+    public void setSport(int sport) {
         this.sport = sport;
     }
 }
