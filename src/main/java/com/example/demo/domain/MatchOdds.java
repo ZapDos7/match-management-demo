@@ -12,6 +12,15 @@ public class MatchOdds {
     private Specifier specifier;
     private double odd;
 
+    public MatchOdds() {
+    }
+
+    public MatchOdds(long matchId, Specifier specifier, double odd) {
+        this.matchId = matchId;
+        this.specifier = specifier;
+        this.odd = odd;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

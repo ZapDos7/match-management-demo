@@ -1,6 +1,5 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.domain.Match;
 import com.example.demo.service.MatchService;
 import com.example.demo.web.request.CreateMatchRequest;
 import com.example.demo.web.request.UpdateMatchRequest;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "matches", description = "Manage matches")
+@Tag(name = "Matches", description = "Manage matches")
 @RestController
 @RequestMapping("/matches")
 public class MatchController {
