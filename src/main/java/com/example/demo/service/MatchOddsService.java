@@ -1,16 +1,11 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.MatchOdds;
-import com.example.demo.domain.enums.Specifier;
 import com.example.demo.domain.repository.MatchOddsRepository;
-import com.example.demo.web.request.CreateMatchOddsRequest;
-import com.example.demo.web.request.UpdateMatchOddsRequest;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MatchOddsService {
