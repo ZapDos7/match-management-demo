@@ -1,7 +1,7 @@
 package com.example.demo.domain;
 
 import com.example.demo.domain.enums.SportType;
-import com.example.demo.domain.enums.SportTypeConverter;
+import com.example.demo.domain.enums.converters.SportTypeConverter;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

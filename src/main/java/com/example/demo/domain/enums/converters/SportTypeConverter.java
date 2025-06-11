@@ -1,5 +1,6 @@
-package com.example.demo.domain.enums;
+package com.example.demo.domain.enums.converters;
 
+import com.example.demo.domain.enums.SportType;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
