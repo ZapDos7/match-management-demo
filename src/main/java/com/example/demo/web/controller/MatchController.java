@@ -8,10 +8,9 @@ import com.example.demo.web.resources.MatchResource;
 import com.example.demo.web.resources.translator.MatchResourceTranslator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Tag(name = "Matches", description = "Manage matches")
 @RestController
@@ -28,8 +27,10 @@ public class MatchController {
     @Operation(summary = "Get all matches")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<MatchResource> getAllMatches() {
-        return MatchResourceTranslator.toListResources(matchService.getAll());
+    public Page<MatchResource> getAllMatches(
+            @RequestParam(required = false, defaultValue = "0") int pageNo,
+            @RequestParam(required = false, defaultValue = "5") int pageSize) {
+        return MatchResourceTranslator.toPageResources(matchService.getAll(pageNo, pageSize));
     }
 
     @Operation(summary = "Get a match's details")
