@@ -4,7 +4,8 @@ CREATE TABLE match_odds (
     match_id BIGSERIAL NOT NULL,
     specifier VARCHAR(10) NOT NULL,
     odd DECIMAL(5,2) NOT NULL,
-    CONSTRAINT fk_match_odds_match_id FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE
+    CONSTRAINT fk_match_odds_match_id FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE,
+    CONSTRAINT unique_spec_odd_per_match UNIQUE (match_id, specifier)
 );
 
 -- Insert dummy data
