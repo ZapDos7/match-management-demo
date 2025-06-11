@@ -11,6 +11,7 @@ Match management REST API using Spring Boot
 
 #### Next Steps
 - [x] Return custom resources instead of entities 
-- [ ] Page instead of list in Controller getters
+- [ ] Page instead of list in Controller getters, also sorting
+- [ ] Functionality: return all match odds per match
 - [ ] Validations & Error handling
 - [ ] Introduction of Docker
