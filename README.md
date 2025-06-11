@@ -10,6 +10,7 @@ Match management REST API using Spring Boot
 5. Visit the app's [swagger documentation page](http://localhost:8080/swagger-ui.html) for more info.
 
 #### Next Steps
-1. Return custom resources instead of entities 
-2. Validations & Error handling
-3. Introduction of Docker
+- [x] Return custom resources instead of entities 
+- [ ] Page instead of list in Controller getters
+- [ ] Validations & Error handling
+- [ ] Introduction of Docker

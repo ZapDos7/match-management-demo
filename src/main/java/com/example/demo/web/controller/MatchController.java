@@ -4,6 +4,8 @@ import com.example.demo.domain.Match;
 import com.example.demo.service.MatchService;
 import com.example.demo.web.request.CreateMatchRequest;
 import com.example.demo.web.request.UpdateMatchRequest;
+import com.example.demo.web.resources.MatchResource;
+import com.example.demo.web.resources.translator.MatchResourceTranslator;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -24,29 +26,29 @@ public class MatchController {
     @Operation(summary = "Get all matches")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Match> getAllMatches() {
-        return matchService.getAll();
+    public List<MatchResource> getAllMatches() {
+        return MatchResourceTranslator.toListResources(matchService.getAll());
     }
 
     @Operation(summary = "Get a match's details")
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Match getOneMatch(@PathVariable long id) {
-        return matchService.getOne(id);
+    public MatchResource getOneMatch(@PathVariable long id) {
+        return MatchResourceTranslator.toResource(matchService.getOne(id));
     }
 
     @Operation(summary = "Create a new match")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Match createMatch(@RequestBody CreateMatchRequest request) {
-        return matchService.createMatch(request);
+    public MatchResource createMatch(@RequestBody CreateMatchRequest request) {
+        return MatchResourceTranslator.toResource(matchService.createMatch(request));
     }
 
     @Operation(summary = "Update a match")
     @PatchMapping(path = "{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Match updateMatch(@PathVariable long id, @RequestBody UpdateMatchRequest request) {
-        return matchService.updateMatch(id, request);
+    public MatchResource updateMatch(@PathVariable long id, @RequestBody UpdateMatchRequest request) {
+        return MatchResourceTranslator.toResource(matchService.updateMatch(id, request));
     }
 
     @Operation(summary = "Delete a match")
